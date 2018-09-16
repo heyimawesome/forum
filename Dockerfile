@@ -1,9 +1,9 @@
-FROM python:3.7-alpine
-#FROM python:3.7-slim
+#FROM python:3.7-alpine
+FROM python:3.7-slim
 
 LABEL maintainer="james.heimberger@netlag.xyz"
 
-RUN apk update && apk add libpq postgresql-dev build-base
+#RUN apk update && apk add libpq postgresql-dev build-base
 
 #RUN apt-get update && apt-get install -qq -y \
 #    build-essential libpq-dev --no-install-recommends
