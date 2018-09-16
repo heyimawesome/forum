@@ -14,13 +14,13 @@ def user():
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('main.index'))
     form = LoginForm()
     if form.validate_on_submit():
         u = User.query.filter_by(username=form.username.data).first()
         if u is not None and u.check_password(form.password.data):
             login_user(u, remember=form.remember_me.data)
-            return redirect(url_for('index'))
+            return redirect(url_for('main.index'))
         else:
             flash('Invalid Username or Password.')
             redirect(url_for('auth.login'))
@@ -30,13 +30,13 @@ def login():
 @bp.route('/logout', methods=['GET'])
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('main.index'))
 
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('main.index'))
     form = RegisterForm()
     if form.validate_on_submit():
         u = User(username=form.username.data)

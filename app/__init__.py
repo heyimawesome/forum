@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
@@ -20,8 +20,7 @@ def create_app():
     from app.auth import bp as bp_auth
     app.register_blueprint(bp_auth, url_prefix='/auth')
 
-    @app.route('/')
-    def index():
-        return render_template('index.html')
+    from app.main import bp as bp_main
+    app.register_blueprint(bp_main)
 
     return app
